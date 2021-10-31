@@ -1,8 +1,8 @@
 class ItemsPrefecture < ActiveHash::Base
   self.data = [
-     { id: 1, name: '--' },
-     { id: 2, name: '北海道' }, { id: 3,  name: '青森県' },  { id: 4, name: '岩手県' },  { id: 5, name: '宮城県' },
-     { id: 6, name: '秋田県' }, { id: 7,  name: '山形県' },  { id: 8, name: '福島県' },  { id: 9, name: '茨城県' },
+    { id: 1, name: '--' },
+    { id: 2, name: '北海道' }, { id: 3,  name: '青森県' },  { id: 4, name: '岩手県' },  { id: 5, name: '宮城県' },
+    { id: 6, name: '秋田県' }, { id: 7,  name: '山形県' },  { id: 8, name: '福島県' },  { id: 9, name: '茨城県' },
     { id: 10, name: '栃木県' }, { id: 11, name: '群馬県' }, { id: 12, name: '埼玉県' }, { id: 13, name: '千葉県' },
     { id: 14, name: '東京都' }, { id: 15, name: '神奈川県' }, { id: 16, name: '新潟県' }, { id: 17, name: '富山県' },
     { id: 18, name: '石川県' }, { id: 19, name: '福井県' }, { id: 20, name: '山梨県' }, { id: 21, name: '長野県' },

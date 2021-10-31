@@ -9,4 +9,3 @@ class ApplicationController < ActionController::Base
                                              :first_name_kana, :birth_date])
   end
 end
-
