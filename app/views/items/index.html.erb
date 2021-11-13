@@ -134,7 +134,7 @@
       <li class='list'>
          <%= link_to "#" do %>
          <div class='item-content'>
-          <%= image_tag item.image.variant(resize: '350x300'), class: "items-img"%>
+          <%= image_tag item.image.variant(resize: '350x300'), class: "items-img" %>
          <div class='item-img-content'>
          <h3 class='item-name'>
             <%= item.name %>
@@ -147,12 +147,13 @@
             </div>
           </div>
           <% end %>
+
+           <% if @item.length == 0 %>
           <%= image_tag "item-sample.png", class: "item-img" %>
-          <%# 商品が売れていればsold outを表示しましょう %>
+          <%# 商品購入機能で実装。以下sold out表示機能 %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -166,15 +167,12 @@
             </div>
           </div>
         </div>
-      
-     <% end %>
-      </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
-      <% if @item.length == 0 %>
-      <li class='list'>
+        <% end %>
+       <% end %>
+     
+       <%# 以下ダミー %>
+       <% if @item.length == 0 %>
+       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
@@ -192,9 +190,7 @@
         <% end %>
       </li>
      <% end %>
-      
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+     </li>
     </ul>
   </div>
 
