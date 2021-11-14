@@ -130,7 +130,7 @@
     <ul class='item-lists'>
       <%  @item.each do |item| %>
       <li class='list'>
-         <%= link_to show_item_path(item.id) do %>
+         <%= link_to item_path(item.id), method: :get do %>
          <div class='item-content'>
           <%= image_tag item.image.variant(resize: '350x300'), class: "items-img" %>
          <div class='item-img-content'>
