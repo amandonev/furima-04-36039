@@ -20,12 +20,10 @@
     </div>
 
    
-    <% if user_signed_in? && current_user.id == @item.user_id %>
     <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
-    <% end %>
-    <%# 未実装機能、商品が売れていない場合はこちらを表示しましょう %>
+    <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
 
@@ -37,27 +35,27 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user.nick_name %></td>
+          <td class="detail-value"><%= "出品者名" %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.category.name %></td>
+          <td class="detail-value"><%= "カテゴリー名" %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @item.sales_status.name %></td>
+          <td class="detail-value"><%= "商品の状態" %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.shipping_fee_status.name %></td>
+          <td class="detail-value"><%= "発送料の負担" %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @item.prefecture.name %></td>
+          <td class="detail-value"><%= "発送元の地域" %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.scheduled.name %></td>
+          <td class="detail-value"><%= "発送日の目安" %></td>
         </tr>
       </tbody>
     </table>
@@ -97,7 +95,7 @@
     </a>
   </div>
   
-  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
   
 </div>
 
