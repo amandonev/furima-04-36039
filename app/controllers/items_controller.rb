@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_item_find, only: [:show, :edit, :update]
 
+
   def index
     @item = Item.all.order(id: 'DESC')
   end
