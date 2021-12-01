@@ -12,6 +12,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if @item.pay.present?
+      redirect_to root_path
+    else
+    end
+
   end
 
   def edit

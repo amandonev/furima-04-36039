@@ -126,14 +126,21 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-
     <ul class='item-lists'>
       <%  @item.each do |item| %>
       <li class='list'>
          <%= link_to item_path(item.id), method: :get do %>
-         <div class='item-content'>
+        <div class='item-img-content'>
+
           <%= image_tag item.image.variant(resize: '350x300'), class: "items-img" %>
-         <div class='item-img-content'>
+          <% if item.pay.present? %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+        </div>
+        
+        <div class='item-info'>
          <h3 class='item-name'>
             <%= item.name %>
           </h3>
@@ -143,31 +150,12 @@
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
             </div>
+           </div>
           </div>
-          <% end %>
+        <% end %>    
+     </li>
+     <% end %>
 
-           <% if @item.length == 0 %>
-          <%= image_tag "item-sample.png", class: "item-img" %>
-          <%# 商品購入機能で実装。以下sold out表示機能 %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= "商品名" %>
-          </h3>
-          <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-       <% end %>
-     
        <%# 以下ダミー %>
        <% if @item.length == 0 %>
        <li class='list'>
@@ -186,7 +174,6 @@
           </div>
         </div>
         <% end %>
-      </li>
      <% end %>
      </li>
     </ul>

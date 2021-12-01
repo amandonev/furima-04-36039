@@ -1,8 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: :index
 
   def index
     @item = Item.find(params[:item_id])
     @pay_delivery = PayDelivery.new
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    else
+     
+    end
   end
 
   def new
@@ -32,7 +38,6 @@ class OrdersController < ApplicationController
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # テスト秘密鍵
       Payjp::Charge.create(
         amount: @item.price,  
-               #  仮説検証  @item.price
         card: order_params[:token],    
         currency: 'jpy'                 
       )
