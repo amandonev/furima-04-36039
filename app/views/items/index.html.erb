@@ -18,7 +18,6 @@
     </div>
   </div>
   <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
-
   <%# FURIMAが選ばれる3つの理由部分 %>
   <div class='select-reason-contents'>
     <h2 class='title'>
@@ -61,7 +60,6 @@
     </ul>
   </div>
   <%# /FURIMAが選ばれる3つの理由部分 %>
-
   <%# 画面中央の「会員数日本一位」帯部分 %>
   <div class='ad-contents'>
     <h2 class='ad-title'>
@@ -82,7 +80,6 @@
     </div>
   </div>
   <%# /画面中央の「会員数日本一位」帯部分 %>
-
   <%# FURIMAの特徴 %>
   <div class='feature-contents'>
     <h2 class='title'>
@@ -119,7 +116,6 @@
     </ul>
   </div>
   <%# /FURIMAの特徴 %>
-
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
@@ -130,10 +126,26 @@
       <%  @item.each do |item| %>
       <li class='list'>
          <%= link_to item_path(item.id), method: :get do %>
-        <div class='item-img-content'>
 
+        <div class='item-img-content'>
           <%= image_tag item.image.variant(resize: '350x300'), class: "items-img" %>
           <% if item.pay.present? %>
+         <div class='item-content'>
+          <%= image_tag item.image.variant(resize: '350x300'), class: "items-img" %>
+         <div class='item-img-content'>
+         <h3 class='item-name'>
+            <%= item.name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br><%= item.shipping_fee_status.name %></span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+          <% end %>
+           <% if @item.length == 0 %>
+          <%= image_tag "item-sample.png", class: "item-img" %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
@@ -185,5 +197,4 @@
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
-
 <%= render "shared/footer" %>
