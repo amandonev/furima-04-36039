@@ -9,5 +9,4 @@ FactoryBot.define do
     phone_number       { '09012345678' } # 11桁半角
   end
 
-  # association :user_id, :item_id
 end

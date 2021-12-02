@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
+  before_action :set_item, only: [:index, :create, ]
 
   def index
-    @item = Item.find(params[:item_id])
     @pay_delivery = PayDelivery.new
     if current_user.id != @item.user_id && @item.pay.blank?
     else
@@ -10,12 +10,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
-    @pay_delivery = PayDelivery.new
-  end
-
   def create
-    @item = Item.find(params[:item_id])
     @pay_delivery = PayDelivery.new(order_params)
     if @pay_delivery.valid?
       pay_item
@@ -31,6 +26,10 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:pay_delivery).permit(:postal_code, :prefecture_id, :city, :address,
                                          :building, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item

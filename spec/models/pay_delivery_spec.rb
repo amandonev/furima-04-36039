@@ -14,6 +14,12 @@ RSpec.describe PayDelivery, type: :model do
       it '全ての値が正しく入力されていれば保存できる' do
         expect(@pay_delivery).to be_valid
       end
+
+      it '建物名が空でも購入できる'do
+      @pay_delivery.building = ""
+        expect(@pay_delivery).to be_valid
+      end
+
     end
 
     context '必要な値が[空]の場合' do
@@ -49,8 +55,20 @@ RSpec.describe PayDelivery, type: :model do
         expect(@pay_delivery.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
-      it '【phone_number】  電話番号が[10〜11桁以内の半角数値]でないと保存できない' do
-        @pay_delivery.phone_number = '090-5669-41'
+      it '【phone_number】  電話番号が[9桁以下]では保存できない' do
+        @pay_delivery.phone_number = '0901234'
+        @pay_delivery.valid?
+        expect(@pay_delivery.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it '【phone_number】  電話番号が[12桁以上]では保存できない' do
+        @pay_delivery.phone_number = '012012345678'
+        @pay_delivery.valid?
+        expect(@pay_delivery.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it '【phone_number】  電話番号に半角数字以外が含まれている場合は購入できない' do
+        @pay_delivery.phone_number = '06-12345678'
         @pay_delivery.valid?
         expect(@pay_delivery.errors.full_messages).to include('Phone number is invalid')
       end
@@ -67,6 +85,18 @@ RSpec.describe PayDelivery, type: :model do
         @pay_delivery.token = ''
         @pay_delivery.valid?
         expect(@pay_delivery.errors.full_messages).to include("Token can't be blank")
+      end
+    end
+
+    context 'アソシエーションに異常がある場合'do
+      it 'userが紐付いていなければ購入できない'do
+        @user = nil
+        @pay_delivery.valid?
+      end
+
+      it 'itemが紐付いていなければ購入できない'do
+        @item = nil
+        @pay_delivery.valid?
       end
     end
   end
