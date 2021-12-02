@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @item.user_id
-    else
+    if current_user.id == @item.user_id && @item.pay.blank?
+    else 
       redirect_to root_path
     end
   end
