@@ -90,13 +90,15 @@ RSpec.describe PayDelivery, type: :model do
 
     context 'アソシエーションに異常がある場合'do
       it 'userが紐付いていなければ購入できない'do
-        @user = nil
+        @pay_delivery.user_id = nil
         @pay_delivery.valid?
+        expect(@pay_delivery.errors.full_messages).to include("User can't be blank")
       end
 
       it 'itemが紐付いていなければ購入できない'do
-        @item = nil
+        @pay_delivery.item_id = nil
         @pay_delivery.valid?
+        expect(@pay_delivery.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
