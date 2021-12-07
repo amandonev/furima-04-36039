@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :set_item_find, only: [:show, :edit, :update, :destroy]
 
 
-
   def index
     @item = Item.all.order(id: 'DESC')
   end
@@ -16,8 +15,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @item.user_id
-    else
+    if current_user.id == @item.user_id && @item.pay.blank?
+    else 
       redirect_to root_path
     end
   end
